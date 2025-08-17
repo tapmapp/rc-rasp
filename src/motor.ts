@@ -25,7 +25,7 @@ const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v
 
 /**
  * Convert normalized throttle (0..1) to microsecond pulse (ESC_MIN_US..ESC_MAX_US).
- */
+*/
 function throttleToPulse(t: number): number {
   const tt = clamp(t, 0, 1);
   return Math.round(ESC_MIN_US + (ESC_MAX_US - ESC_MIN_US) * tt);
@@ -38,7 +38,7 @@ function throttleToPulse(t: number): number {
 /**
  * Arm the ESC by sending minimum throttle for a duration (default 2s).
  * Call this after the ESC is powered and the Pi is booted.
- */
+*/
 export async function armESC(ms: number = DEFAULT_ARM_MS): Promise<void> {
   esc.servoWrite(ESC_MIN_US);
   await sleep(ms);
@@ -48,7 +48,7 @@ export async function armESC(ms: number = DEFAULT_ARM_MS): Promise<void> {
  * Calibrate the ESC's throttle range (ONLY if your ESC uses this sequence).
  * Many ESCs: apply MAX throttle, wait for beeps, then MIN throttle.
  * Read your ESC manual before using this.
- */
+*/
 export async function calibrateESC(stepMs: number = 2000): Promise<void> {
   // FULL THROTTLE
   esc.servoWrite(ESC_MAX_US);
