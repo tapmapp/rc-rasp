@@ -1,5 +1,9 @@
-const world = 'world';
+import * as dotenv from 'dotenv';
 
-export function hello(who: string = world): string {
-  return `Hello ${who}! `;
-}
+// MODULES
+import { initSocket } from "./Socket";
+
+dotenv.config();
+
+
+initSocket();

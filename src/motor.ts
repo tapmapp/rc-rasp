@@ -31,14 +31,6 @@ function throttleToPulse(t: number): number {
   return Math.round(ESC_MIN_US + (ESC_MAX_US - ESC_MIN_US) * tt);
 }
 
-// =============
-// ESC controls
-// =============
-
-/**
- * Arm the ESC by sending minimum throttle for a duration (default 2s).
- * Call this after the ESC is powered and the Pi is booted.
-*/
 export async function armESC(ms: number = DEFAULT_ARM_MS): Promise<void> {
   esc.servoWrite(ESC_MIN_US);
   await sleep(ms);
