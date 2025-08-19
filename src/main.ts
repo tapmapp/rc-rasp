@@ -11,11 +11,7 @@ initSocket();
 setServoAngle(0);
 
 setTimeout(() => {
-    setServoAngle(40);
-}, 1000);
-
-setTimeout(() => {
-    setServoAngle(80);
-}, 2000);
+    setServoAngle(90);
+}, 3000);
 
 centerServo();
