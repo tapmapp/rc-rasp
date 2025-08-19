@@ -7,7 +7,7 @@ const SERVO_PIN = 18; // Must be a hardware-PWM capable GPIO (12, 13, 18, or 19)
 
 // Servo timing constants
 const SERVO_MIN_US = 500;   // ~0°
-const SERVO_MAX_US = 2500;  // ~180°
+const SERVO_MAX_US = 3000;  // ~180°
 const SERVO_FREQ_HZ = 50;   // Standard frame rate
 
 // ================
