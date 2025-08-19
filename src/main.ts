@@ -16,4 +16,4 @@ setTimeout(() => {
 
 setTimeout(() => {
     setServoAngle(45);
-}, 3000);
+}, 6000);
