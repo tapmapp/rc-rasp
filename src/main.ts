@@ -13,18 +13,9 @@ const keyUp = (key: string) => {
 };
 
 const keyDown = (key: string) => {
-    console.log(key);
+    if (key == 'a') setServoAngle(90);
+    if (key == 'd') setServoAngle(0);
 };
 
 socket.on('keyDown', (key: string) => keyDown(key));
 socket.on('keyUp', (key: string) => keyUp(key));
-
-setServoAngle(0);
-
-setTimeout(() => {
-    setServoAngle(90);
-}, 3000);
-
-setTimeout(() => {
-    centerServo();
-}, 6000);
