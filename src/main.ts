@@ -6,7 +6,18 @@ import { centerServo, setServoAngle } from './servo';
 
 dotenv.config();
 
-initSocket();
+const socket = initSocket();
+
+const keyUp = (key: string) => {
+    centerServo();
+};
+
+const keyDown = (key: string) => {
+    console.log(key);
+};
+
+socket.on('keyDown', (key: string) => keyDown(key));
+socket.on('keyUp', (key: string) => keyUp(key));
 
 setServoAngle(0);
 
