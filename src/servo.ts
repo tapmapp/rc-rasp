@@ -23,14 +23,20 @@ function clamp(value: number, min: number, max: number): number {
 }
 
 export function setServoAngle(angle: number): void {
-    const a = clamp(angle, 0, 180);
+    const a = clamp(angle, 0, 360);
     const pulse = SERVO_MIN_US + (SERVO_MAX_US - SERVO_MIN_US) * (a / 180);
     servo.servoWrite(Math.round(pulse));
     console.log(`Servo set to ${a}° (${Math.round(pulse)} µs)`);
 }
 
 export function centerServo(): void {
-    setServoAngle(90);
+    setServoAngle(80);
+    setTimeout(() => {
+        setServoAngle(90);
+    }, 1000);
+    setTimeout(() => {
+        setServoAngle(0);
+    }, 3000);
 }
 
 export function stopServo(): void {
