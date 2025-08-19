@@ -10,6 +10,12 @@ dotenv.config();
 initSocket();
 
 setServoAngle(0);
-setServoAngle(90);
 
-centerServo();
+setTimeout(() => {
+    setServoAngle(90);
+}, 1000);
+
+
+setTimeout(() => {
+    centerServo();
+}, 2000);
