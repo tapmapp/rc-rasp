@@ -16,6 +16,7 @@
   "dependencies": {
     "@types/webrtc": "^0.0.46",
     "axios": "^1.11.0",
+    "canvas": "^3.2.0",
     "dotenv": "^17.2.1",
     "node-pre-gyp": "^0.17.0",
     "pigpio": "^3.3.1",
