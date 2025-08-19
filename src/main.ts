@@ -13,5 +13,3 @@ setServoAngle(0);
 setTimeout(() => {
     setServoAngle(90);
 }, 3000);
-
-centerServo();
