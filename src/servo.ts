@@ -30,7 +30,7 @@ export function setServoAngle(angle: number): void {
 }
 
 export function centerServo(): void {
-    setServoAngle(47);
+    setServoAngle(49);
 }
 
 export function stopServo(): void {
