@@ -13,6 +13,7 @@ const keyUp = (key: string) => {
 };
 
 const keyDown = (key: string) => {
+    console.log(key);
     if (key == 'a') setServoAngle(90);
     if (key == 'd') setServoAngle(0);
 };
