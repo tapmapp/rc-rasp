@@ -9,5 +9,5 @@ dotenv.config();
 
 initSocket();
 
-setServoAngle(0);
+setServoAngle(90);
 
