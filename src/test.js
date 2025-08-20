@@ -1,18 +1,15 @@
-const RaspividJpegStream = require("raspivid-jpeg-stream");
+const { StreamCamera, Codec, Flip, SensorMode } = require('pi-camera-connect');
 
 function startStreaming() {
 
-  const width = 320;
-  const height = 240;
+    const streamCamera = new StreamCamera({
+        codec: Codec.MJPEG,
+        flip: Flip.Vertical,
+        sensorMode: SensorMode.Mode6
+    });
+    
 
-  const camera = new RaspividJpegStream({
-    'width': 640,
-    'height': 480,
-    'timeout': 0,
-    'framerate': 24
-  });
-
-  camera.on("data", (framet) => {
+    streamCamera.on("frame", (framet) => {
 
     console.log(framet);
 
