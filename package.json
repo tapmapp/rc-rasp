@@ -2,6 +2,7 @@
   "name": "rc-rasp",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "npx tsc && sudo node dist/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
