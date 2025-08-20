@@ -12,12 +12,17 @@ async function startStreaming() {
 
     await streamCamera.startCapture();
 
+    cameraStartCapture().then(() => {
+        console.log('Camera is now capturing');
+        streamCamera.on("frame", (framet) => {
 
-    streamCamera.on("frame", (framet) => {
-
-        console.log(framet);
-
+            console.log(framet);
+    
+        });
     });
+
+
+    
 
 }
 
