@@ -50,30 +50,32 @@ function startStreaming(source) {
   return new Promise((resolve) => {
 
     camera.on("data", (framet) => {
+
+      console.log(framet);
       
-      loadImage(framet).then((image) => {
+      // loadImage(framet).then((image) => {
 
-        context.drawImage(image, 0, 0, width, height);
+      //   context.drawImage(image, 0, 0, width, height);
 
-        try {
+      //   try {
 
-          const rgbaFrame = context.getImageData(0, 0, width, height);
-          const i420Frame = {
-            width,
-            height,
-            data: new Uint8ClampedArray(1.5 * width * height),
-          };
+      //     const rgbaFrame = context.getImageData(0, 0, width, height);
+      //     const i420Frame = {
+      //       width,
+      //       height,
+      //       data: new Uint8ClampedArray(1.5 * width * height),
+      //     };
           
-          rgbaToI420(rgbaFrame, i420Frame);
-          source.onFrame(i420Frame);
+      //     rgbaToI420(rgbaFrame, i420Frame);
+      //     source.onFrame(i420Frame);
           
-          resolve();
+      //     resolve();
         
-        } catch (error) {
-          console.log(error);
-          resolve();
-        }
-      });
+      //   } catch (error) {
+      //     console.log(error);
+      //     resolve();
+      //   }
+      // });
     });
     
   }).catch((err) => resolve());
