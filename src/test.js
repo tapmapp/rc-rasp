@@ -1,6 +1,6 @@
 const { StreamCamera, Codec, Flip, SensorMode } = require('pi-camera-connect');
 
-function startStreaming() {
+async function startStreaming() {
 
     console.log('running!');
 
@@ -9,7 +9,9 @@ function startStreaming() {
         flip: Flip.Vertical,
         sensorMode: SensorMode.Mode6
     });
-    
+
+    await streamCamera.startCapture();
+
 
     streamCamera.on("frame", (framet) => {
 
@@ -18,5 +20,7 @@ function startStreaming() {
     });
 
 }
+
+
 
 startStreaming();
