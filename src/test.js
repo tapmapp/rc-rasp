@@ -1,4 +1,4 @@
-import { StreamCamera, Codec } from 'pi-camera-connect';
+import { StreamCamera, Codec } from '@mdebeljuh/pi-camera-connect';
 import * as fs from 'fs';
 
 const runApp = async () => {

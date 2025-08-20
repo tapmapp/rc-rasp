@@ -1,4 +1,4 @@
-const { RTCVideoSource, RTCVideoSink, rgbaToI420 } = require("wrtc");
+const { RTCVideoSource, RTCVideoSink, rgbaToI420 } = require("wrtc").nonstandard;
 const { RTCPeerConnection, RTCSessionDescription, MediaStream } = require("wrtc");
 
 const { createCanvas, loadImage } = require("canvas");
@@ -7,7 +7,7 @@ const axios = require("axios");
 
 const stream = new MediaStream();
 const peer = createPeer();
-const source = new RTCVideoSource();
+const source = RTCVideoSource();
 const track = source.createTrack();
 
 stream.addTrack(track);
