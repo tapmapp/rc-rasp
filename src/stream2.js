@@ -1,5 +1,5 @@
-const { RTCVideoSource, RTCVideoSink, rgbaToI420 } = require("wrtc").nonstandard;
-const { RTCPeerConnection, RTCSessionDescription, MediaStream } = require("wrtc");
+const { RTCVideoSink, rgbaToI420 } = require("wrtc").nonstandard;
+const { RTCPeerConnection, RTCSessionDescription, MediaStream, RTCVideoSource } = require("wrtc");
 
 const { createCanvas, loadImage } = require("canvas");
 const { StreamCamera, Codec } = require('@mdebeljuh/pi-camera-connect');
@@ -7,7 +7,7 @@ const axios = require("axios");
 
 const stream = new MediaStream();
 const peer = createPeer();
-const source = RTCVideoSource();
+const source = new RTCVideoSource();
 const track = source.createTrack();
 
 stream.addTrack(track);
