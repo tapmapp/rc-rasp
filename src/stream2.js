@@ -1,4 +1,4 @@
-const { RTCVideoSource, RTCVideoSink, rgbaToI420 } = require("wrtc").nonstandard;
+const { RTCVideoSource, RTCVideoSink, rgbaToI420 } = require("wrtc");
 const { RTCPeerConnection, RTCSessionDescription, MediaStream } = require("wrtc");
 
 const { createCanvas, loadImage } = require("canvas");
