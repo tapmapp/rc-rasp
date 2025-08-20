@@ -6,11 +6,10 @@ function startStreaming() {
   const height = 240;
 
   const camera = new RaspividJpegStream({
-    width: width,
-    height: height,
-    timeout: 0,
-    framerate: 24,
-    bitrate: 25000000,
+    'width': 640,
+    'height': 480,
+    'timeout': 0,
+    'framerate': 24
   });
 
   camera.on("data", (framet) => {
