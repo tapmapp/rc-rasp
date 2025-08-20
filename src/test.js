@@ -1,19 +1,13 @@
-const PiCamera = require('pi-camera');
-const myCamera = new PiCamera({
-  mode: 'video',
-  output: `${ __dirname }/video.h264`,
-  width: 1920,
-  height: 1080,
-  timeout: 5000, // Record for 5 seconds
-  nopreview: true,
-});
+import { spawn } from "node:child_process";
 
-myCamera.record()
-  .then((result) => {
-    console.log('hi')
-    // Your video was captured
-  })
-  .catch((error) => {
-    console.log(error);
-     // Handle your error
-  });
+const cam = spawn("rpicam-vid", [
+    "-t", "0",
+    "--width", "1280",
+    "--height", "720",
+    "--framerate", "30",
+    "--profile", "baseline",
+    "--inline",
+    "-o", "-"
+  ]);
+  
+  cam.stderr.on("data", d => console.log(d));
