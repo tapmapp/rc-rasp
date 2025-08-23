@@ -18,8 +18,8 @@ const track = source.createTrack();
 stream.addTrack(track);
 peer.addTrack(track, stream);
 
-const WIDTH = 640;
-const HEIGHT = 480;
+const WIDTH = 320;
+const HEIGHT = 240;
 const FPS = 24;
 
 const streamCamera = new StreamCamera({
