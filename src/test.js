@@ -10,6 +10,9 @@ const runApp = async () => {
     codec: Codec.H264,
   });
 
+  const canvas = createCanvas(width, height);
+  const context = canvas.getContext("2d");
+  
   const videoStream = streamCamera.createStream();
 
   const writeStream = fs.createWriteStream('video-stream.h264');
@@ -18,6 +21,8 @@ const runApp = async () => {
   videoStream.pipe(writeStream);
 
   await streamCamera.startCapture();
+
+
 
   // We can also listen to data events as they arrive
   videoStream.on('data', data => {
