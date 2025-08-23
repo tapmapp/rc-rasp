@@ -5,6 +5,8 @@ const fs = require('fs');
 
 const runApp = async () => {
   const streamCamera = new StreamCamera({
+    width: 320,
+    height: 240,
     codec: Codec.H264,
   });
 
