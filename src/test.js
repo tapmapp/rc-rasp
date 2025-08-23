@@ -31,7 +31,7 @@ const runApp = async () => {
     console.log(data);
 
     loadImage(data).then((image) => {
-
+        console.log('done')
         console.log(image);
 
         
