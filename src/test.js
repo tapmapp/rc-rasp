@@ -11,7 +11,7 @@ const runApp = async () => {
   const streamCamera = new StreamCamera({
     width,
     height,
-    codec: Codec.H264,
+    codec: Codec.MJPEG,
   });
 
   const canvas = createCanvas(width, height);
@@ -19,10 +19,6 @@ const runApp = async () => {
 
   const videoStream = streamCamera.createStream();
 
-  const writeStream = fs.createWriteStream('video-stream.h264');
-
-  // Pipe the video stream to our video file
-  videoStream.pipe(writeStream);
 
   await streamCamera.startCapture();
 
@@ -38,21 +34,21 @@ const runApp = async () => {
 
         console.log(image);
 
-        // context.drawImage(image, 0, 0, width, height);
+        context.drawImage(image, 0, 0, width, height);
 
-        // try {
-        //   const rgbaFrame = context.getImageData(0, 0, width, height);
-        //   const i420Frame = {
-        //     width,
-        //     height,
-        //     data: new Uint8ClampedArray(1.5 * width * height),
-        //   };
-        //   rgbaToI420(rgbaFrame, i420Frame);
-        // //   source.onFrame(i420Frame);
+        try {
+          const rgbaFrame = context.getImageData(0, 0, width, height);
+          const i420Frame = {
+            width,
+            height,
+            data: new Uint8ClampedArray(1.5 * width * height),
+          };
+          rgbaToI420(rgbaFrame, i420Frame);
+        //   source.onFrame(i420Frame);
           
-        // } catch (error) {
-        //   console.log(error);
-        // }
+        } catch (error) {
+          console.log(error);
+        }
       });
   });
   videoStream.on('end', data => console.log('Video stream has ended'));
