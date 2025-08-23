@@ -31,21 +31,24 @@ const runApp = async () => {
   // We can also listen to data events as they arrive
   videoStream.on('data', data => {
     loadImage(data).then((image) => {
-        context.drawImage(image, 0, 0, width, height);
 
-        try {
-          const rgbaFrame = context.getImageData(0, 0, width, height);
-          const i420Frame = {
-            width,
-            height,
-            data: new Uint8ClampedArray(1.5 * width * height),
-          };
-          rgbaToI420(rgbaFrame, i420Frame);
-        //   source.onFrame(i420Frame);
+        console.log(image);
+
+        // context.drawImage(image, 0, 0, width, height);
+
+        // try {
+        //   const rgbaFrame = context.getImageData(0, 0, width, height);
+        //   const i420Frame = {
+        //     width,
+        //     height,
+        //     data: new Uint8ClampedArray(1.5 * width * height),
+        //   };
+        //   rgbaToI420(rgbaFrame, i420Frame);
+        // //   source.onFrame(i420Frame);
           
-        } catch (error) {
-          console.log(error);
-        }
+        // } catch (error) {
+        //   console.log(error);
+        // }
       });
   });
   videoStream.on('end', data => console.log('Video stream has ended'));
