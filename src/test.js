@@ -38,7 +38,6 @@ return new Promise((resolve) => {
             data: new Uint8ClampedArray(1.5 * width * height),
           };
           rgbaToI420(rgbaFrame, i420Frame);
-          source.onFrame(i420Frame);
           resolve();
         } catch (error) {
           console.log(error);
