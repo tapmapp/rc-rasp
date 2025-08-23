@@ -97,13 +97,10 @@ function handleChunk(chunk) {
     const rgbaFrame = jpegToRgba(jpeg);
     const i420Frame = rgbaToI420Frame(rgbaFrame);
 
-    console.log(i420Frame);
-
     source.onFrame(i420Frame);
     // SAVE FRAME
 
     buffer = buffer.slice(end + 2);
-
     start = buffer.indexOf(SOI);
     end = start !== -1 ? buffer.indexOf(EOI, start + 2) : -1;
   }
