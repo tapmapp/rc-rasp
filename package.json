@@ -18,6 +18,7 @@
     "axios": "^1.11.0",
     "canvas": "^3.2.0",
     "dotenv": "^17.2.1",
+    "jpeg-js": "^0.4.4",
     "node-pre-gyp": "^0.17.0",
     "pigpio": "^3.3.1",
     "raspivid-jpeg-stream": "^1.0.0",

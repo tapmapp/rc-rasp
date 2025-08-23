@@ -1,4 +1,4 @@
-const { StreamCamera, Codec } = require('pi-camera-connect');
+const { StreamCamera, Codec } = require('@mdebeljuh/pi-camera-connect');
 const { jpeg } = require('jpeg-js');
 const { wrtc } = require('wrtc');
 
