@@ -1,5 +1,5 @@
-const { RTCVideoSink, rgbaToI420 } = require("wrtc").nonstandard;
-const { RTCPeerConnection, RTCSessionDescription, MediaStream, RTCVideoSource } = require("wrtc");
+const { RTCVideoSource, RTCVideoSink, rgbaToI420 } = require("wrtc").nonstandard;
+const { RTCPeerConnection, RTCSessionDescription, MediaStream } = require("wrtc");
 
 const { createCanvas, loadImage } = require("canvas");
 const { StreamCamera, Codec } = require('@mdebeljuh/pi-camera-connect');
@@ -43,7 +43,7 @@ async function startStreaming(source) {
 
   const videoStream = streamCamera.createStream();
 
-  await videoStream.startCapture();
+  await streamCamera.startCapture();
 
   const canvas = createCanvas(width, height);
   const context = canvas.getContext("2d");

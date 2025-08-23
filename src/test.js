@@ -1,4 +1,6 @@
 import { StreamCamera, Codec } from '@mdebeljuh/pi-camera-connect';
+import { createCanvas, loadImage } from "canvas";
+const { RTCVideoSource, RTCVideoSink, rgbaToI420 } = require("wrtc").nonstandard;
 import * as fs from 'fs';
 
 const runApp = async () => {
@@ -16,7 +18,25 @@ const runApp = async () => {
   await streamCamera.startCapture();
 
   // We can also listen to data events as they arrive
-  videoStream.on('data', data => console.log('New data', data));
+  videoStream.on('data', data => {
+    loadImage(framet).then((image) => {
+        context.drawImage(image, 0, 0, width, height);
+
+        try {
+          const rgbaFrame = context.getImageData(0, 0, width, height);
+          const i420Frame = {
+            width,
+            height,
+            data: new Uint8ClampedArray(1.5 * width * height),
+          };
+          rgbaToI420(rgbaFrame, i420Frame);
+        //   source.onFrame(i420Frame);
+          
+        } catch (error) {
+          console.log(error);
+        }
+      });
+  });
   videoStream.on('end', data => console.log('Video stream has ended'));
 
   // Wait for 5 seconds
