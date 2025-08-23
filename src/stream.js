@@ -136,13 +136,8 @@ async function handleNegotiationNeededEvent(peer) {
     sdp: peer.localDescription,
   };
 
-  axios.post("http://192.168.1.129:8080/broadcast", payload).then(function (response) {
-    const desc = new RTCSessionDescription(response.sdp);
-    peer.setRemoteDescription(desc).catch((e) => console.log(e));
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-  
+  const { data } = await axios.post("http://192.168.1.129:8080/broadcast", payload)
+  const desc = new RTCSessionDescription(data.sdp);
+  peer.setRemoteDescription(desc).catch((e) => console.log(e));
 
 }
