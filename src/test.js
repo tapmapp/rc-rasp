@@ -4,15 +4,19 @@ const { RTCVideoSource, RTCVideoSink, rgbaToI420 } = require("wrtc").nonstandard
 const fs = require('fs');
 
 const runApp = async () => {
+
+    const width = 320;
+    const height = 240;
+
   const streamCamera = new StreamCamera({
-    width: 320,
-    height: 240,
+    width,
+    height,
     codec: Codec.H264,
   });
 
   const canvas = createCanvas(width, height);
   const context = canvas.getContext("2d");
-  
+
   const videoStream = streamCamera.createStream();
 
   const writeStream = fs.createWriteStream('video-stream.h264');
