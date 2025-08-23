@@ -1,7 +1,7 @@
 const { StreamCamera, Codec } = require('@mdebeljuh/pi-camera-connect');
 const { createCanvas, loadImage } = require("canvas");
 const { RTCVideoSource, RTCVideoSink, rgbaToI420 } = require("wrtc").nonstandard;
-const { fs } = require('fs');
+const fs = require('fs');
 
 const runApp = async () => {
   const streamCamera = new StreamCamera({
