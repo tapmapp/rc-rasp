@@ -11,12 +11,12 @@ const SOI = Buffer.from([0xff, 0xd8]); // Start of Image
 const EOI = Buffer.from([0xff, 0xd9]); // End of Image
 
 const stream = new MediaStream();
-//const peer = createPeer();
+const peer = createPeer();
 const source = new RTCVideoSource();
 const track = source.createTrack();
 
 stream.addTrack(track);
-//peer.addTrack(track, stream);
+peer.addTrack(track, stream);
 
 const WIDTH = 640;
 const HEIGHT = 480;
