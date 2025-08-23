@@ -30,6 +30,10 @@ const runApp = async () => {
 
   // We can also listen to data events as they arrive
   videoStream.on('data', data => {
+
+
+    console.log(data);
+
     loadImage(data).then((image) => {
 
         console.log(image);
