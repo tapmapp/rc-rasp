@@ -73,24 +73,9 @@ async function main() {
   await streamCamera.startCapture();
   console.log(`Capture started: ${WIDTH}x${HEIGHT} @ ${FPS}fps (MJPEG)`);
 
-  // Graceful shutdown
-  const shutdown = async () => {
-    try {
-      await streamCamera.stopCapture();
-    } catch {}
-    out.end();
-    console.log('Stopped.');
-    process.exit(0);
-  };
-
-  process.on('SIGINT', shutdown);
-  process.on('SIGTERM', shutdown);
 }
 
-main().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
+main();
 
 function createPeer() {
 
