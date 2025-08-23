@@ -5,6 +5,11 @@ const axios = require('axios');
 const { RTCVideoSource, rgbaToI420 } = require("wrtc").nonstandard;
 const { RTCPeerConnection, RTCSessionDescription, MediaStream } = require("wrtc");
 
+let buffer = Buffer.alloc(0);
+
+const SOI = Buffer.from([0xff, 0xd8]); // Start of Image
+const EOI = Buffer.from([0xff, 0xd9]); // End of Image
+
 const stream = new MediaStream();
 //const peer = createPeer();
 const source = new RTCVideoSource();
@@ -49,30 +54,53 @@ function rgbaToI420Frame(rgbaFrame) {
 async function main() {
 
   const mjpegStream = streamCamera.createStream();
+  await streamCamera.startCapture();
 
   mjpegStream.on('data', (jpegBuffer) => {
-    try {
-      // 1) JPEG -> RGBA
-      const rgbaFrame = jpegToRgba(jpegBuffer);
 
-      // 2) RGBA -> I420
-      const i420Frame = rgbaToI420Frame(rgbaFrame);
+    handleChunk(jpegBuffer);
 
-      // i420Frame.data
-      source.onFrame(i420Frame);
+    // try {
 
-    } catch (err) {
-      console.error('Frame processing error:', err);
-    }
+    //   // 1) JPEG -> RGBA
+    //   const rgbaFrame = jpegToRgba(jpegBuffer);
+
+    //   // 2) RGBA -> I420
+    //   const i420Frame = rgbaToI420Frame(rgbaFrame);
+
+    //   // i420Frame.data
+    //   source.onFrame(i420Frame);
+
+    // } catch (err) {
+    //   console.error('Frame processing error:', err);
+    // }
   });
 
   mjpegStream.on('error', (err) => {
     console.error('Stream error:', err);
   });
 
-  await streamCamera.startCapture();
   console.log(`Capture started: ${WIDTH}x${HEIGHT} @ ${FPS}fps (MJPEG)`);
 
+}
+
+function handleChunk(chunk) {
+
+  buffer = Buffer.concat([buffer, chunk]);
+
+  let start = buffer.indexOf(SOI);
+  let end = start !== -1 ? buffer.indexOf(EOI, start + 2) : -1;
+
+  while (start !== -1 && end !== -1) {
+    const jpeg = buffer.slice(start, end + 2);
+    const rgbaFrame = jpegToRgba(jpeg);
+    // SAVE FRAME
+
+    buffer = buffer.slice(end + 2);
+
+    start = buffer.indexOf(SOI);
+    end = start !== -1 ? buffer.indexOf(EOI, start + 2) : -1;
+  }
 }
 
 main();
