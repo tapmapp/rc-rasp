@@ -19,7 +19,7 @@ const runApp = async () => {
 
   // We can also listen to data events as they arrive
   videoStream.on('data', data => {
-    loadImage(framet).then((image) => {
+    loadImage(data).then((image) => {
         context.drawImage(image, 0, 0, width, height);
 
         try {
