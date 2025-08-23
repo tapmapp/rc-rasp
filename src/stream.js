@@ -92,8 +92,11 @@ function handleChunk(chunk) {
   let end = start !== -1 ? buffer.indexOf(EOI, start + 2) : -1;
 
   while (start !== -1 && end !== -1) {
+    
     const jpeg = buffer.slice(start, end + 2);
     const rgbaFrame = jpegToRgba(jpeg);
+    const i420Frame = rgbaToI420Frame(rgbaFrame);
+    source.onFrame(i420Frame);
     // SAVE FRAME
 
     buffer = buffer.slice(end + 2);
