@@ -1,6 +1,7 @@
 const { StreamCamera, Codec } = require('@mdebeljuh/pi-camera-connect');
 const { jpeg } = require('jpeg-js');
 const { wrtc } = require('wrtc');
+const { axios } = require('axios');
 
 const { RTCVideoSource, rgbaToI420 } = require("wrtc").nonstandard;
 const { RTCPeerConnection, RTCSessionDescription, MediaStream } = require("wrtc");
