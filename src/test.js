@@ -23,20 +23,19 @@ const runApp = async () => {
   await streamCamera.startCapture();
 
 
+return new Promise((resolve) => {
+    // We can also listen to data events as they arrive
+    videoStream.on('data', data => {
 
-  // We can also listen to data events as they arrive
-  videoStream.on('data', data => {
+        console.log(data);
 
-
-    console.log(data);
-
-    loadImage(data).then((image) => {
-        console.log('done')
-        console.log(image);
-
-        
-      });
-  });
+        loadImage(data).then((image) => {
+            console.log('done')
+            console.log(image);
+            resolve();
+        });
+    });
+})
   videoStream.on('end', data => console.log('Video stream has ended'));
 
   // Wait for 5 seconds
