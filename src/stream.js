@@ -6,12 +6,12 @@ const { RTCVideoSource, rgbaToI420 } = require("wrtc").nonstandard;
 const { RTCPeerConnection, RTCSessionDescription, MediaStream } = require("wrtc");
 
 const stream = new MediaStream();
-const peer = createPeer();
+//const peer = createPeer();
 const source = new RTCVideoSource();
 const track = source.createTrack();
 
 stream.addTrack(track);
-peer.addTrack(track, stream);
+//peer.addTrack(track, stream);
 
 const WIDTH = 640;
 const HEIGHT = 480;
