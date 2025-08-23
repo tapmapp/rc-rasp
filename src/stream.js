@@ -2,7 +2,7 @@ const { StreamCamera, Codec } = require('pi-camera-connect');
 const { jpeg } = require('jpeg-js');
 const { wrtc } = require('wrtc');
 
-const { RTCVideoSource, RTCVideoSink, rgbaToI420 } = require("wrtc").nonstandard;
+const { RTCVideoSource, rgbaToI420 } = require("wrtc").nonstandard;
 const { RTCPeerConnection, RTCSessionDescription, MediaStream } = require("wrtc");
 
 const stream = new MediaStream();
@@ -12,8 +12,6 @@ const track = source.createTrack();
 
 stream.addTrack(track);
 peer.addTrack(track, stream);
-
-const { rgbaToI420 } = wrtc.nonstandard;
 
 const WIDTH = 640;
 const HEIGHT = 480;
