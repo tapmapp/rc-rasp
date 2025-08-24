@@ -12,13 +12,12 @@ dotenv.config();
 const socket = initSocket();
 
 const keyUp = (key: string) => {
-    // centerServo();
-    console.log('c')
+    centerServo();
 };
 
 const keyDown = (key: string) => {
-    if (key == 'a') console.log('a')
-    if (key == 'd') console.log('b')
+    if (key == 'a') setServoAngle(0);
+    if (key == 'd') setServoAngle(90);
 };
 
 socket.on('keyDown', (key: string) => keyDown(key));
