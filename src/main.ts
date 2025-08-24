@@ -11,6 +11,20 @@ Stream.startStream();
 
 const socket = initSocket();
 
+centerServo();
+
+setTimeout(() => {
+    setServoAngle(90)
+}, 3000);
+
+setTimeout(() => {
+    setServoAngle(45)
+}, 6000);
+
+setTimeout(() => {
+    setServoAngle(0)
+}, 9000);
+
 const keyUp = (key: string) => {
     console.log('hi1')
 };
