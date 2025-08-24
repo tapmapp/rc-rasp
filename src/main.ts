@@ -12,7 +12,8 @@ dotenv.config();
 const socket = initSocket();
 
 const keyUp = (key: string) => {
-    centerServo();
+    // centerServo();
+    console.log('c')
 };
 
 const keyDown = (key: string) => {
