@@ -16,8 +16,8 @@ const keyUp = (key: string) => {
 };
 
 const keyDown = (key: string) => {
-    if (key == 'a') setServoAngle(0);
-    if (key == 'd') setServoAngle(90);
+    if (key == 'a') console.log('a')
+    if (key == 'd') console.log('b')
 };
 
 socket.on('keyDown', (key: string) => keyDown(key));

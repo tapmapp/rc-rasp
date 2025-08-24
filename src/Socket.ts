@@ -9,17 +9,12 @@ export const initSocket = (): Socket => {
         path: "/clients/socketio/hubs/Centro",
         autoConnect: true,
         reconnection: true,
-        query: {
-            token: 'hello'
-        }
     });
 
     const onConnect = () => {
         console.log('Socket connected!');
     };
 
-    
-    
     const onDisconnect = () => {
         console.log('Socket disconnected!');
     };
