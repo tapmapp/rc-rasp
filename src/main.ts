@@ -3,11 +3,11 @@ import * as dotenv from 'dotenv';
 // MODULES
 import { initSocket } from "./Socket";
 import { centerServo, setServoAngle } from './servo';
-//import * as Stream from './stream.js';
+import * as Stream from './stream.js';
 
 dotenv.config();
 
-//Stream.startStream();
+Stream.startStream();
 
 const socket = initSocket();
 
