@@ -7,7 +7,7 @@ import * as Stream from './stream.js';
 
 dotenv.config();
 
-Stream.startStream();
+// Stream.startStream();
 
 //const socket = initSocket();
 
