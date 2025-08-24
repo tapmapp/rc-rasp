@@ -12,12 +12,12 @@ Stream.startStream();
 const socket = initSocket();
 
 const keyUp = (key: string) => {
-    centerServo();
+    console.log('hi1')
 };
 
 const keyDown = (key: string) => {
-    if (key == 'a') setServoAngle(0);
-    if (key == 'd') setServoAngle(90);
+    if (key == 'a') console.log('hi2')
+    if (key == 'd') console.log('hi3')
 };
 
 socket.on('keyDown', (key: string) => keyDown(key));
