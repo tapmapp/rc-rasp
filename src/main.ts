@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 
 // MODULES
-import { initSocket } from "./Socket";
+//import { initSocket } from "./Socket";
 import { centerServo, setServoAngle } from './servo';
 import * as Stream from './stream.js';
 
@@ -9,7 +9,7 @@ dotenv.config();
 
 Stream.startStream();
 
-const socket = initSocket();
+//const socket = initSocket();
 
 centerServo();
 
@@ -34,5 +34,5 @@ const keyDown = (key: string) => {
     if (key == 'd') console.log('hi3')
 };
 
-socket.on('keyDown', (key: string) => keyDown(key));
-socket.on('keyUp', (key: string) => keyUp(key));
+//socket.on('keyDown', (key: string) => keyDown(key));
+//socket.on('keyUp', (key: string) => keyUp(key));
