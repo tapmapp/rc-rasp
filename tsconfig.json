@@ -9,6 +9,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "baseUrl": ".",
+    "allowJs": true,
     "typeRoots": ["./src/types", "./node_modules/@types"]
   }
 }

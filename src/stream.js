@@ -20,13 +20,14 @@ peer.addTrack(track, stream);
 
 const WIDTH = 320;
 const HEIGHT = 240;
-const FPS = 24;
+const FPS = 20;
 
 const streamCamera = new StreamCamera({
   codec: Codec.MJPEG,
   width: WIDTH,
   height: HEIGHT,
   fps: FPS,
+  sharpness: 25
 });
 
 // ---------- Frame pipeline ----------
@@ -51,29 +52,13 @@ function rgbaToI420Frame(rgbaFrame) {
   return { width, height, data: i420Data };
 }
 
-async function main() {
+export async function startStream() {
 
   const mjpegStream = streamCamera.createStream();
   await streamCamera.startCapture();
 
   mjpegStream.on('data', (jpegBuffer) => {
-
     handleChunk(jpegBuffer);
-
-    // try {
-
-    //   // 1) JPEG -> RGBA
-    //   const rgbaFrame = jpegToRgba(jpegBuffer);
-
-    //   // 2) RGBA -> I420
-    //   const i420Frame = rgbaToI420Frame(rgbaFrame);
-
-    //   // i420Frame.data
-    //   source.onFrame(i420Frame);
-
-    // } catch (err) {
-    //   console.error('Frame processing error:', err);
-    // }
   });
 
   mjpegStream.on('error', (err) => {
@@ -98,15 +83,14 @@ function handleChunk(chunk) {
     const i420Frame = rgbaToI420Frame(rgbaFrame);
 
     source.onFrame(i420Frame);
-    // SAVE FRAME
 
+    // SAVE FRAME
     buffer = buffer.slice(end + 2);
     start = buffer.indexOf(SOI);
     end = start !== -1 ? buffer.indexOf(EOI, start + 2) : -1;
+
   }
 }
-
-main();
 
 function createPeer() {
 
@@ -133,7 +117,7 @@ async function handleNegotiationNeededEvent(peer) {
     sdp: peer.localDescription,
   };
 
-  console.log('starting ...');
+  console.log('Starting ...');
 
   const { data } = await axios.post("http://192.168.1.129:3000/broadcast", payload)
   const desc = new RTCSessionDescription(data.sdp);
